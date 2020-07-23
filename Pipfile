@@ -8,6 +8,11 @@ verify_ssl = true
 [packages]
 jinja2 = "*"
 flask-sqlalchemy = "*"
+tweepy = "*"
+basilica = "*"
+python-dotenv = "*"
+numpy = "*"
+scikit-learn = "*"
 
 [requires]
 python_version = "3.7"

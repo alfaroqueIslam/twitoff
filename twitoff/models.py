@@ -1,5 +1,6 @@
 """SQLAlchemy models and utility functions for TwitOff."""
 from flask_sqlalchemy import SQLAlchemy
+
 DB = SQLAlchemy()
 TWITTER_USERS = ['calebhicks', 'elonmusk', 'rrherr', 'SteveMartinToGo',
                  'alyankovic', 'nasa', 'sadserver', 'jkhowland', 'austen',
@@ -22,7 +23,9 @@ class Tweet(DB.Model):
     """Tweets and their embeddings from Basilica."""
     id = DB.Column(DB.BigInteger, primary_key=True)
     text = DB.Column(DB.Unicode(300))  # Allows for full tweet + link
-    user_id = DB.Column(DB.BigInteger, DB.ForeignKey('user.id'), nullable=False)
+    embedding = DB.Column(DB.PickleType, nullable=False)
+    user_id = DB.Column(DB.BigInteger, DB.ForeignKey('user.id'),
+                        nullable=False)
     user = DB.relationship('User', backref=DB.backref('tweets', lazy=True))
 
     def __repr__(self):
